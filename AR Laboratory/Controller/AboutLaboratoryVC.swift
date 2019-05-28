@@ -24,11 +24,11 @@ class AboutLaboratoryVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = laboratoriesClasses[selectedCell].nameOfTheLaboratory
-        laboratoryDescription.text = laboratoriesClasses[selectedCell].descriptionOfTheLaboratory
-        laboratoryCoverImage.image = UIImage(named: laboratoriesClasses[selectedCell].laboratoryCoverImage)
-        mathematicalModelImage.image = UIImage(named: laboratoriesClasses[selectedCell].mathematicalModelImage)
-        laboratoryConfiguration.attributedText = laboratoriesClasses[selectedCell].configurationOfLaboratory
+        self.navigationItem.title = Laboratories.shared.listOfLaboratories[selectedCell].nameOfTheLaboratory
+        laboratoryDescription.text = Laboratories.shared.listOfLaboratories[selectedCell].descriptionOfTheLaboratory
+        laboratoryCoverImage.image = UIImage(named: Laboratories.shared.listOfLaboratories[selectedCell].laboratoryCoverImage)
+        mathematicalModelImage.image = UIImage(named: Laboratories.shared.listOfLaboratories[selectedCell].mathematicalModelImage)
+        laboratoryConfiguration.attributedText = Laboratories.shared.listOfLaboratories[selectedCell].configurationOfLaboratory
         // Do any additional setup after loading the view.
     }
     

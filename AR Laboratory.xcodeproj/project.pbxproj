@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A288B7D229C604F00AE99A1 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A288B7C229C604F00AE99A1 /* Extentions.swift */; };
 		3A2E7A602297A62B00987870 /* LaboratoriesModels.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A2E7A5F2297A62B00987870 /* LaboratoriesModels.scnassets */; };
 		3A655AA7229514EF00049589 /* RoundedButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A655AA6229514EF00049589 /* RoundedButtonView.swift */; };
 		3A655AAB229571BC00049589 /* AboutLaboratoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A655AAA229571BC00049589 /* AboutLaboratoryVC.swift */; };
 		3A6B7E022296E58C009FF3A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6B7E012296E58C009FF3A3 /* Constants.swift */; };
-		3A6B7E052296E92E009FF3A3 /* WilberforcePendulumLaboratory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6B7E042296E92E009FF3A3 /* WilberforcePendulumLaboratory.swift */; };
 		3A6B7E07229789BF009FF3A3 /* LookIn3DVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6B7E06229789BF009FF3A3 /* LookIn3DVC.swift */; };
 		3AA00847229442B30003160E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA00846229442B30003160E /* AppDelegate.swift */; };
 		3AA00849229442B30003160E /* LaboratoryChooseCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA00848229442B30003160E /* LaboratoryChooseCollectionVC.swift */; };
@@ -19,18 +19,20 @@
 		3AA0084E229442B50003160E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AA0084D229442B50003160E /* Assets.xcassets */; };
 		3AA00851229442B50003160E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA0084F229442B50003160E /* LaunchScreen.storyboard */; };
 		3AA0085C2294450A0003160E /* VirtualLaboratoriesCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA0085B2294450A0003160E /* VirtualLaboratoriesCollectionCell.swift */; };
+		3ADE629C229A7850002747DF /* LaboratoryDescriptionStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADE629B229A7850002747DF /* LaboratoryDescriptionStruct.swift */; };
+		3ADE629E229A7A0C002747DF /* InstantiateLaboratoriedDescriptionStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADE629D229A7A0C002747DF /* InstantiateLaboratoriedDescriptionStruct.swift */; };
 		3AEAD2A8229855B200DEC016 /* LookInARVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEAD2A7229855B200DEC016 /* LookInARVC.swift */; };
-		3AF1F8E22295C1EC00FCA0A3 /* Laboratory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1F8E12295C1EC00FCA0A3 /* Laboratory.swift */; };
+		3AF1F8E22295C1EC00FCA0A3 /* WilberforcePendulumBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1F8E12295C1EC00FCA0A3 /* WilberforcePendulumBehavior.swift */; };
 		EF7B7A686EE6E7E0E8326AF4 /* Pods_AR_Laboratory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0AEC2ACB25478153AD9DA5 /* Pods_AR_Laboratory.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2DEC26CB1D831423653033E0 /* Pods-AR Laboratory.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR Laboratory.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AR Laboratory/Pods-AR Laboratory.debug.xcconfig"; sourceTree = "<group>"; };
+		3A288B7C229C604F00AE99A1 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		3A2E7A5F2297A62B00987870 /* LaboratoriesModels.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = LaboratoriesModels.scnassets; sourceTree = "<group>"; };
 		3A655AA6229514EF00049589 /* RoundedButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonView.swift; sourceTree = "<group>"; };
 		3A655AAA229571BC00049589 /* AboutLaboratoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutLaboratoryVC.swift; sourceTree = "<group>"; };
 		3A6B7E012296E58C009FF3A3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		3A6B7E042296E92E009FF3A3 /* WilberforcePendulumLaboratory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilberforcePendulumLaboratory.swift; sourceTree = "<group>"; };
 		3A6B7E06229789BF009FF3A3 /* LookIn3DVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookIn3DVC.swift; sourceTree = "<group>"; };
 		3AA00843229442B30003160E /* AR Laboratory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR Laboratory.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA00846229442B30003160E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,8 +42,10 @@
 		3AA00850229442B50003160E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AA00852229442B50003160E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AA0085B2294450A0003160E /* VirtualLaboratoriesCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualLaboratoriesCollectionCell.swift; sourceTree = "<group>"; };
+		3ADE629B229A7850002747DF /* LaboratoryDescriptionStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaboratoryDescriptionStruct.swift; sourceTree = "<group>"; };
+		3ADE629D229A7A0C002747DF /* InstantiateLaboratoriedDescriptionStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstantiateLaboratoriedDescriptionStruct.swift; sourceTree = "<group>"; };
 		3AEAD2A7229855B200DEC016 /* LookInARVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookInARVC.swift; sourceTree = "<group>"; };
-		3AF1F8E12295C1EC00FCA0A3 /* Laboratory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Laboratory.swift; sourceTree = "<group>"; };
+		3AF1F8E12295C1EC00FCA0A3 /* WilberforcePendulumBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilberforcePendulumBehavior.swift; sourceTree = "<group>"; };
 		3EE23C9714255B69EBDAAA3F /* Pods-AR Laboratory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AR Laboratory.release.xcconfig"; path = "Pods/Target Support Files/Pods-AR Laboratory/Pods-AR Laboratory.release.xcconfig"; sourceTree = "<group>"; };
 		FC0AEC2ACB25478153AD9DA5 /* Pods_AR_Laboratory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AR_Laboratory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -58,11 +62,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A288B7B229C603C00AE99A1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3A288B7C229C604F00AE99A1 /* Extentions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		3A6B7E032296E905009FF3A3 /* Laboratories */ = {
 			isa = PBXGroup;
 			children = (
-				3AF1F8E12295C1EC00FCA0A3 /* Laboratory.swift */,
-				3A6B7E042296E92E009FF3A3 /* WilberforcePendulumLaboratory.swift */,
+				3AF1F8E12295C1EC00FCA0A3 /* WilberforcePendulumBehavior.swift */,
+				3ADE629B229A7850002747DF /* LaboratoryDescriptionStruct.swift */,
 			);
 			path = Laboratories;
 			sourceTree = "<group>";
@@ -88,6 +100,7 @@
 		3AA00845229442B30003160E /* AR Laboratory */ = {
 			isa = PBXGroup;
 			children = (
+				3A288B7B229C603C00AE99A1 /* Helpers */,
 				3A6B7E032296E905009FF3A3 /* Laboratories */,
 				3AA0085A2294434B0003160E /* Controller */,
 				3AA00859229443460003160E /* View */,
@@ -106,6 +119,7 @@
 		3AA00858229442CA0003160E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3ADE629D229A7A0C002747DF /* InstantiateLaboratoriedDescriptionStruct.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -260,13 +274,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ADE629C229A7850002747DF /* LaboratoryDescriptionStruct.swift in Sources */,
 				3AA00849229442B30003160E /* LaboratoryChooseCollectionVC.swift in Sources */,
-				3AF1F8E22295C1EC00FCA0A3 /* Laboratory.swift in Sources */,
+				3AF1F8E22295C1EC00FCA0A3 /* WilberforcePendulumBehavior.swift in Sources */,
 				3AA0085C2294450A0003160E /* VirtualLaboratoriesCollectionCell.swift in Sources */,
-				3A6B7E052296E92E009FF3A3 /* WilberforcePendulumLaboratory.swift in Sources */,
 				3A655AAB229571BC00049589 /* AboutLaboratoryVC.swift in Sources */,
+				3ADE629E229A7A0C002747DF /* InstantiateLaboratoriedDescriptionStruct.swift in Sources */,
 				3A6B7E07229789BF009FF3A3 /* LookIn3DVC.swift in Sources */,
 				3A6B7E022296E58C009FF3A3 /* Constants.swift in Sources */,
+				3A288B7D229C604F00AE99A1 /* Extentions.swift in Sources */,
 				3A655AA7229514EF00049589 /* RoundedButtonView.swift in Sources */,
 				3AA00847229442B30003160E /* AppDelegate.swift in Sources */,
 				3AEAD2A8229855B200DEC016 /* LookInARVC.swift in Sources */,

@@ -340,6 +340,9 @@
                                     <constraint firstAttribute="height" constant="32" id="QiB-YR-RGk"/>
                                 </constraints>
                                 <state key="normal" image="refreshBtn"/>
+                                <connections>
+                                    <action selector="resetSessionBtnWasPressed:" destination="XZT-iQ-zK5" eventType="touchUpInside" id="QIH-uz-xxM"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSl-fW-rAC">
                                 <rect key="frame" x="310" y="40" width="32" height="32"/>
@@ -468,8 +471,8 @@
                                                             <action selector="hideConfigurationWasPressed:" destination="XZT-iQ-zK5" eventType="touchUpInside" id="gbG-ji-hkc"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Конфигурация системы" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKx-6w-3Ch">
-                                                        <rect key="frame" x="98" y="10" width="218" height="24"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Панель управления" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKx-6w-3Ch">
+                                                        <rect key="frame" x="117.33333333333333" y="10" width="179.33333333333337" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -502,15 +505,15 @@
                                                             <action selector="thetaBeginSliderWasChanged:" destination="XZT-iQ-zK5" eventType="valueChanged" id="Gfy-Nd-K8Q"/>
                                                         </connections>
                                                     </slider>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9N-OV-B5E">
-                                                        <rect key="frame" x="354" y="69" width="42" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5.5555 см" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9N-OV-B5E">
+                                                        <rect key="frame" x="332" y="55" width="74" height="48"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5i-Wb-Pk0">
-                                                        <rect key="frame" x="354" y="125" width="42" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5.5555 радиана" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5i-Wb-Pk0">
+                                                        <rect key="frame" x="336" y="112" width="70" height="46"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -523,8 +526,8 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRL-8K-LmA">
-                                                        <rect key="frame" x="356" y="179" width="42" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5.5555 гр" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRL-8K-LmA">
+                                                        <rect key="frame" x="336" y="171" width="68" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -544,8 +547,8 @@
                                                             <action selector="nutMassSliderWasChanged:" destination="XZT-iQ-zK5" eventType="valueChanged" id="lHR-T2-uAJ"/>
                                                         </connections>
                                                     </slider>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Evf-T6-dP7">
-                                                        <rect key="frame" x="354" y="237" width="42" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5.5555 гр" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Evf-T6-dP7">
+                                                        <rect key="frame" x="336" y="225" width="68" height="45"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -565,13 +568,6 @@
                                                             <action selector="rigidityCofSliderWasChanged:" destination="XZT-iQ-zK5" eventType="valueChanged" id="pOG-kU-Je0"/>
                                                         </connections>
                                                     </slider>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyL-ny-z6t">
-                                                        <rect key="frame" x="354" y="291" width="42" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.20000000000000001" minValue="0.20000000000000001" maxValue="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="wqw-Ep-P55">
                                                         <rect key="frame" x="18" y="179" width="308" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -579,12 +575,36 @@
                                                             <action selector="loadMassSliderWasChanged:" destination="XZT-iQ-zK5" eventType="valueChanged" id="LwC-AE-kVu"/>
                                                         </connections>
                                                     </slider>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acr-nI-zaV">
+                                                        <rect key="frame" x="63" y="9" width="32" height="32"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" image="stop"/>
+                                                        <connections>
+                                                            <action selector="stopExperimentBtnWasPressed:" destination="XZT-iQ-zK5" eventType="touchUpInside" id="ezH-ew-HDB"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GuN-PP-aMY">
+                                                        <rect key="frame" x="15" y="9" width="32" height="32"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" image="play-button"/>
+                                                        <connections>
+                                                            <action selector="startExperimentBtnWasPressed:" destination="XZT-iQ-zK5" eventType="touchUpInside" id="MEP-wL-ZUY"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5.5555 кг/с" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyL-ny-z6t">
+                                                        <rect key="frame" x="335" y="280" width="68" height="43"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="WKx-6w-3Ch" firstAttribute="top" secondItem="nLB-rl-A3g" secondAttribute="top" constant="10" id="1rM-10-cc8"/>
                                                     <constraint firstAttribute="trailing" secondItem="guX-XY-jBu" secondAttribute="trailing" constant="10" id="LsM-8S-MaS"/>
                                                     <constraint firstItem="guX-XY-jBu" firstAttribute="top" secondItem="nLB-rl-A3g" secondAttribute="top" constant="10" id="PY2-fC-ICd"/>
                                                     <constraint firstItem="WKx-6w-3Ch" firstAttribute="centerX" secondItem="nLB-rl-A3g" secondAttribute="centerX" id="VL3-bo-Bkt"/>
+                                                    <constraint firstItem="guX-XY-jBu" firstAttribute="centerY" secondItem="WKx-6w-3Ch" secondAttribute="centerY" id="t6G-rc-9JF"/>
                                                 </constraints>
                                             </view>
                                             <constraints>
@@ -606,14 +626,6 @@
                                 </constraints>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GuN-PP-aMY">
-                                <rect key="frame" x="348" y="110" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="startExperimentBtnWasPressed:" destination="XZT-iQ-zK5" eventType="touchUpInside" id="MEP-wL-ZUY"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -644,10 +656,22 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="configurationBtn" destination="UgX-Er-qv5" id="o4b-br-lVz"/>
                         <outlet property="configurationView" destination="QDW-nD-yEI" id="BNP-LD-TlU"/>
+                        <outlet property="graphicsBtn" destination="UZX-Kc-bdH" id="Wts-LP-uSH"/>
                         <outlet property="graphicsView" destination="Zul-4L-D2e" id="aFu-kY-ero"/>
                         <outlet property="laboratoryARView" destination="FCZ-3W-xLA" id="bm0-hF-X4X"/>
                         <outlet property="lineChart" destination="wa3-Fs-z2l" id="WVf-5k-hrX"/>
+                        <outlet property="loadMassLabel" destination="VRL-8K-LmA" id="hYt-hk-8me"/>
+                        <outlet property="loadMassslider" destination="wqw-Ep-P55" id="gWT-Ss-vtb"/>
+                        <outlet property="nutMassLabel" destination="Evf-T6-dP7" id="lj8-YL-r91"/>
+                        <outlet property="nutMassSlider" destination="nKw-mB-VJI" id="XoM-3k-hRR"/>
+                        <outlet property="rigidityCofLabel" destination="ZyL-ny-z6t" id="7nt-Gj-PA4"/>
+                        <outlet property="rigidityCofSlider" destination="niy-Gl-0bq" id="HLk-qS-rKj"/>
+                        <outlet property="thetaBeginSlider" destination="kaV-ks-hBh" id="i0f-kb-lcp"/>
+                        <outlet property="thetaBeginlabel" destination="R5i-Wb-Pk0" id="6RU-sa-awS"/>
+                        <outlet property="zBeginSlider" destination="CIg-n9-tB3" id="rPG-YF-QFA"/>
+                        <outlet property="z_beginLabel" destination="T9N-OV-B5E" id="Adn-2D-c28"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jxu-ag-Dxu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -678,7 +702,9 @@
     </scenes>
     <resources>
         <image name="backBtn" width="32" height="32"/>
+        <image name="play-button" width="32" height="32"/>
         <image name="refreshBtn" width="32" height="32"/>
+        <image name="stop" width="32" height="32"/>
         <image name="wilberforce_pendulum_cover" width="2038" height="1144"/>
     </resources>
 </document>

@@ -13,6 +13,56 @@ import Charts
 
 class LookInARVC: UIViewController, ARSCNViewDelegate {
     
+    @IBOutlet var configurationBtn: RoundedButtonView!
+    @IBOutlet var graphicsBtn: RoundedButtonView!
+    
+    //Sliders
+    @IBOutlet var zBeginSlider: UISlider!
+    @IBOutlet var z_beginLabel: UILabel!
+    
+    
+    @IBOutlet var thetaBeginSlider: UISlider!
+    @IBOutlet var thetaBeginlabel: UILabel!
+    
+    
+    @IBOutlet var loadMassslider: UISlider!
+    @IBOutlet var loadMassLabel: UILabel!
+    
+    
+    @IBOutlet var nutMassSlider: UISlider!
+    @IBOutlet var nutMassLabel: UILabel!
+    
+    
+    @IBOutlet var rigidityCofSlider: UISlider!
+    
+    @IBOutlet var rigidityCofLabel: UILabel!
+    
+    
+    func enableAllsliders() {
+        zBeginSlider.isEnabled = true
+        thetaBeginSlider.isEnabled = true
+        loadMassslider.isEnabled = true
+        nutMassSlider.isEnabled = true
+        rigidityCofSlider.isEnabled = true
+    }
+    
+    func disableAllSliders() {
+        zBeginSlider.isEnabled = false
+        thetaBeginSlider.isEnabled = false
+        loadMassslider.isEnabled = false
+        nutMassSlider.isEnabled = false
+        rigidityCofSlider.isEnabled = false
+    }
+    
+    //TODO: возможно это как то можно убрать
+    let wilberForcePendulum = WilberforcePendulumBehavior()
+    
+    
+    //TODO: - Добавить условия блокировки слайдеров
+    //TODO: - Добавить аннотации когда меняют конфигурацию системы
+    //TODO: - Сделать кнопки запуска и остановки эксперимента
+    
+    
     var isExperimentPlaing: Bool = false
     var t: Double = 0
     let delta = 0.1
@@ -20,86 +70,16 @@ class LookInARVC: UIViewController, ARSCNViewDelegate {
     var isEditingEnabled: Bool = true
     
     
-    
-    
-    
-    //Изначальные условия
-    
-    //Начальное смещение
-    var z_begin: Double = 0
-    
-    //Начальный угол поворота
-    var theta_begin: Double = 0
-    
-    //Масса груза
-    var load_mass: Double = 0.2
-    
-    //Масса гайки
-    var nut_mass: Double = 0.01
-    
-    //Коэффициент жесткости
-    var rigidity_cof: Double = 2
-    
-    //Масса стержня
-    var spoke_mass: Double = 0.025
-    
-    //Общая масса
-    var full_mass: Double = 0.34
-    
-    var I: Double = 1
-    
-    var epsilon: Double = 1
-    
-    var omega_z: Double = 1
-    
-    var omega_theta: Double = 1
-    
-    var w1: Double = 1
-    var w2: Double = 1
-    
-    
-    
-    func calculateParametrsOfTheSystem() {
-        full_mass = load_mass + 4 * nut_mass + 4 * spoke_mass
-        I = (load_mass * pow(0.01, 2.0) / 2) + (spoke_mass/3) * (3 * pow(0.001, 2.0) + pow(0.03, 2.0)) + nut_mass*(pow(0.004, 2.0) + pow(0.001, 2.0)) + 4*pow(0.02, 2.0)*(nut_mass + spoke_mass)
-        epsilon = rigidity_cof * 0.23 * 0.005 * sin(Double.pi*79/180)
-        omega_theta = rigidity_cof / full_mass
-        omega_z = rigidity_cof / full_mass
-        w1 = sqrt(omega_z + sqrt(pow(epsilon, 2.0) / (load_mass * I * 4)))
-        w2 = sqrt(omega_z - sqrt(pow(epsilon, 2.0) / (load_mass * I * 4)))
-    }
-    
-    
-    func changePositionOntime(t: Double) -> (Double, Double) {
-        let z_position = z_begin / (pow(w1, 2.0) - pow(w2, 2.0)) * ((pow(w1, 2.0) - omega_theta)*cos(w1*t) - (pow(w2, 2) - omega_theta)*cos(w2*t)) - (2 * I * theta_begin / epsilon) / (pow(w1, 2.0) - pow(w2, 2.0)) * (pow(w1, 2.0) - omega_theta) * (pow(w2, 2.0) - omega_theta) * (cos(w1*t) - cos(w2*t))
-        let theta_position = (epsilon * z_begin / 2 / I) / (pow(w1, 2.0) - pow(w2, 2.0)) * (cos(w1*t) - cos(w2*t)) + theta_begin / (pow(w1, 2.0) - pow(w2, 2.0))*((pow(w1, 2.0) - omega_theta) * cos(w2*t) - (pow(w2, 2.0) - omega_theta) * cos(w1*t))
-        return (z_position, theta_position)
-    }
-    
-    
     @IBOutlet var lineChart: LineChartView!
-    
-    
     @IBOutlet var graphicsView: UIVisualEffectView!
-    
     @IBOutlet var configurationView: UIVisualEffectView!
-    
     @IBOutlet var laboratoryARView: ARSCNView!
-    
-    var springTopNode: SCNNode = SCNNode()
-    var springNode: SCNNode = SCNNode()
-    var loadNode: SCNNode = SCNNode()
-    
-    
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.laboratoryARView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
-        laboratoryARView.showsStatistics = true
+        self.laboratoryARView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         laboratoryARView.delegate = self
-        
-        //self.laboratoryARView.autoenablesDefaultLighting = true
-        // Do any additional setup after loading the view.
     }
     
     
@@ -110,7 +90,51 @@ class LookInARVC: UIViewController, ARSCNViewDelegate {
         self.laboratoryARView.session.run(configuration)
         self.navigationController?.isNavigationBarHidden = true
         updateGraph()
-        calculateParametrsOfTheSystem()
+        wilberForcePendulum.calculateParametrsOfTheSystem()
+        graphicsBtn.isEnabled = false
+        configurationBtn.isEnabled = false
+        z_beginLabel.text = "\(wilberForcePendulum.z_begin * 100) см"
+        thetaBeginlabel.text = "\(wilberForcePendulum.theta_begin) радиан"
+        loadMassLabel.text = "\(wilberForcePendulum.load_mass * 1000) гр"
+        nutMassLabel.text = "\(wilberForcePendulum.nut_mass * 1000) гр"
+        rigidityCofLabel.text = "\(wilberForcePendulum.rigidity_cof) кг/с"
+        disableAllSliders()
+    }
+    
+    
+    @IBAction func resetSessionBtnWasPressed(_ sender: Any) {
+        isExperimentPlaing = false
+        if !graphicsView.isHidden {
+            graphicsView.isHidden = true
+        }
+        if !configurationView.isHidden {
+            configurationView.isHidden = true
+        }
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .horizontal
+        self.laboratoryARView.session.run(configuration, options: .resetTracking)
+        self.laboratoryARView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+        laboratoryARView.scene = SCNScene()
+        wilberForcePendulum.resetParamethersOfTheSystem()
+        updateGraph()
+        dataArrayZ = []
+        dataArrayTheta = []
+        z_beginLabel.text = "\(wilberForcePendulum.z_begin * 100) см"
+        zBeginSlider.value = Float(wilberForcePendulum.z_begin)
+        thetaBeginlabel.text = "\(wilberForcePendulum.theta_begin) радиан"
+        thetaBeginSlider.value = Float(wilberForcePendulum.theta_begin)
+        loadMassLabel.text = "\(wilberForcePendulum.load_mass * 1000) гр"
+        loadMassslider.value = Float(wilberForcePendulum.load_mass)
+        nutMassLabel.text = "\(wilberForcePendulum.nut_mass * 1000) гр"
+        nutMassSlider.value = Float(wilberForcePendulum.nut_mass)
+        rigidityCofLabel.text = "\(wilberForcePendulum.rigidity_cof) кг/с"
+        rigidityCofSlider.value = Float(wilberForcePendulum.rigidity_cof)
+        wilberForcePendulum.calculateParametrsOfTheSystem()
+        updateGraph()
+        graphicsBtn.isEnabled = false
+        configurationBtn.isEnabled = false
+        t = 0
+        isEditingEnabled = true
     }
     
     
@@ -136,52 +160,52 @@ class LookInARVC: UIViewController, ARSCNViewDelegate {
     
     
     func updateGraph() {
-        var lineChartEntry = [ChartDataEntry]()
-        var lineChartEntry2 = [ChartDataEntry]()
-        for i in 0..<dataArrayZ.count {
-            let value = ChartDataEntry(x: Double(i), y: dataArrayZ[i])
-            lineChartEntry.append(value)
-            let value2 = ChartDataEntry(x: Double(i), y: dataArrayTheta[i])
-            lineChartEntry2.append(value2)
-        }
-        
-        
-        let line1 = LineChartDataSet(values: lineChartEntry, label: "number")
-        line1.colors = [NSUIColor.blue]
-        line1.drawCirclesEnabled = false
-        line1.cubicIntensity = 1
-        
-        let line2 = LineChartDataSet(values: lineChartEntry2, label: "number2")
-        line2.colors = [NSUIColor.red]
-        line2.drawCirclesEnabled = false
-        line2.cubicIntensity = 1
-        
-        
-        let data = LineChartData()
-        data.addDataSet(line1)
-        data.addDataSet(line2)
-        lineChart.data = data
+        lineChart.data = wilberForcePendulum.updateCharts()
         lineChart.chartDescription?.text = "dfjgfdjgkhj"
         lineChart.backgroundColor = UIColor.white
-    
     }
     
     
     @IBAction func startExperimentBtnWasPressed(_ sender: Any) {
+        let startButton = sender as! UIButton
+        startButton.setImage(UIImage(named: "pause"), for: .normal)
+        wilberForcePendulum.calculateParametrsOfTheSystem()
+        disableAllSliders()
         isExperimentPlaing = !isExperimentPlaing
     }
+    
+    @IBAction func stopExperimentBtnWasPressed(_ sender: Any) {
+        isExperimentPlaing = false
+        wilberForcePendulum.resetParamethersOfTheSystem()
+        updateGraph()
+        dataArrayZ = []
+        dataArrayTheta = []
+        z_beginLabel.text = "\(wilberForcePendulum.z_begin * 100) см"
+        zBeginSlider.value = Float(wilberForcePendulum.z_begin)
+        thetaBeginlabel.text = "\(wilberForcePendulum.theta_begin) радиан"
+        thetaBeginSlider.value = Float(wilberForcePendulum.theta_begin)
+        loadMassLabel.text = "\(wilberForcePendulum.load_mass * 1000) гр"
+        loadMassslider.value = Float(wilberForcePendulum.load_mass)
+        nutMassLabel.text = "\(wilberForcePendulum.nut_mass * 1000) гр"
+        nutMassSlider.value = Float(wilberForcePendulum.nut_mass)
+        rigidityCofLabel.text = "\(wilberForcePendulum.rigidity_cof) кг/с"
+        rigidityCofSlider.value = Float(wilberForcePendulum.rigidity_cof)
+        wilberForcePendulum.calculateParametrsOfTheSystem()
+        updateGraph()
+        t = 0
+        enableAllsliders()
+    }
+    
     
     
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         if isExperimentPlaing {
-            let a = changePositionOntime(t: t)
-            let z = a.0
-            let theta = a.1
-            self.loadNode.position.y = Float(z)
-            self.loadNode.eulerAngles.y = Float(theta)
-            self.springNode.position.y = 0.236 + Float(z)
-            updateSpringPosition()
+            let position = wilberForcePendulum.changePositionOntime(t: t)
+            let z = position.0
+            let theta = position.1
+            wilberForcePendulum.updateZPosition(z: z)
+            wilberForcePendulum.updateThetaRotation(theta: theta)
             if (t - firstElem) >= delta
             {
                 self.firstElem = t
@@ -201,16 +225,11 @@ class LookInARVC: UIViewController, ARSCNViewDelegate {
         dataArrayTheta = []
         isExperimentPlaing = false
         navigationController?.popViewController(animated: true)
-        
     }
     
+
     
-    func updateSpringPosition() {
-        let k = (springTopNode.position.y - springNode.position.y) / 0.16
-        springNode.scale.y = k
-    }
-    
-    
+    //Добавить функцию увеличения и поворота
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if isEditingEnabled == true {
             guard let touch = touches.first else { return }
@@ -218,74 +237,50 @@ class LookInARVC: UIViewController, ARSCNViewDelegate {
             guard let hitResult = result.last else { return }
             let hitTransform = SCNMatrix4(hitResult.worldTransform)
             let hitvector = SCNVector3Make(hitTransform.m41, hitTransform.m42, hitTransform.m43)
-            let newScene = SCNScene(named: laboratoriesClasses[selectedCell].laboratoryModel)!
-            let currentPendulum = newScene.rootNode.childNode(withName: "Wilberforce_Pendulum", recursively: false)!
-            springTopNode = newScene.rootNode.childNode(withName: "Spring_Node_Top", recursively: true)!
-            springNode = newScene.rootNode.childNode(withName: "Spring_node", recursively: true)!
-            loadNode = newScene.rootNode.childNode(withName: "Load_Node", recursively: true)!
-            loadNode.position.y = Float(z_begin)
-            loadNode.eulerAngles.y = Float(theta_begin)
-            springNode.position.y = 0.236 + Float(z_begin)
-            updateSpringPosition()
-            currentPendulum.position = hitvector
-            laboratoryARView.scene = newScene
+            laboratoryARView.scene = wilberForcePendulum.setupSceneOnTouch(hitVector: hitvector)
             self.laboratoryARView.debugOptions = []
             isEditingEnabled = false
+            configurationBtn.isEnabled = true
+            graphicsBtn.isEnabled = true
+            enableAllsliders()
         }
     }
     
     
     @IBAction func zBeginSliderWasChanged(_ sender: Any) {
         let slider = sender as! UISlider
-        z_begin = Double(slider.value)
-        loadNode.position.y = Float(z_begin)
-        springNode.position.y = 0.236 + Float(z_begin)
-        updateSpringPosition()
+        wilberForcePendulum.z_begin = Double(slider.value).rounded(toPlaces: 4)
+        wilberForcePendulum.updateZPosition(z: wilberForcePendulum.z_begin)
+        z_beginLabel.text = "\(wilberForcePendulum.z_begin * 100) см"
         
     }
     
     
     @IBAction func thetaBeginSliderWasChanged(_ sender: Any) {
         let slider = sender as! UISlider
-        theta_begin = Double(slider.value)
-        print(theta_begin)
-        loadNode.eulerAngles.y = Float(theta_begin)
+        wilberForcePendulum.theta_begin = Double(slider.value).rounded(toPlaces: 4)
+        wilberForcePendulum.updateThetaRotation(theta: wilberForcePendulum.theta_begin)
+        thetaBeginlabel.text = "\(wilberForcePendulum.theta_begin) радиан"
     }
     
 
     @IBAction func loadMassSliderWasChanged(_ sender: Any) {
         let slider = sender as! UISlider
-        load_mass = Double(slider.value)
+        wilberForcePendulum.load_mass = Double(slider.value).rounded(toPlaces: 4)
+        loadMassLabel.text = "\(wilberForcePendulum.load_mass * 1000) гр"
     }
     
     @IBAction func nutMassSliderWasChanged(_ sender: Any) {
         let slider = sender as! UISlider
-        nut_mass = Double(slider.value)
+        wilberForcePendulum.nut_mass = Double(slider.value).rounded(toPlaces: 4)
+        nutMassLabel.text = "\(wilberForcePendulum.nut_mass * 1000) гр"
     }
     
     
     @IBAction func rigidityCofSliderWasChanged(_ sender: Any) {
         let slider = sender as! UISlider
-        rigidity_cof = Double(slider.value)
+        wilberForcePendulum.rigidity_cof = Double(slider.value).rounded(toPlaces: 4)
+        rigidityCofLabel.text = "\(wilberForcePendulum.rigidity_cof) кг/с"
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

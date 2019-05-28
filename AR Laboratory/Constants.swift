@@ -9,7 +9,6 @@
 import Foundation
 
 
-var laboratoriesClasses = [Laboratory]()
 
 var selectedCell: Int = 0
 

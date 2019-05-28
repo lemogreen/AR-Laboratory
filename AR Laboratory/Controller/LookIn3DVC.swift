@@ -18,7 +18,7 @@ class LookIn3DVC: UIViewController, SCNSceneRendererDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.allowsCameraControl = true
-        sceneView.scene = SCNScene(named: laboratoriesClasses[selectedCell].laboratoryModel)
+        sceneView.scene = SCNScene(named: Laboratories.shared.listOfLaboratories[selectedCell].laboratoryModel)
         sceneView.delegate = self
         //self.navigationItem.
     }

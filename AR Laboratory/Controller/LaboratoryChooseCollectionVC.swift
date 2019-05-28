@@ -13,7 +13,7 @@ class LaboratoryChooseCollectionVC: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        laboratoriesClasses.append(wilberforcePendulum)
+        Laboratories.shared.create_AllLaboratoryDescriptions()
         // Do any additional setup after loading the view.
     }
     
@@ -23,12 +23,14 @@ class LaboratoryChooseCollectionVC: UICollectionViewController {
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return laboratoriesClasses.count
+        return Laboratories.shared.listOfLaboratories.count
     }
+    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "labCell", for: indexPath) as? VirtualLaboratoriesCollectionCell else { return UICollectionViewCell() }
-        cell.setupCell(laboratoryName: laboratoriesClasses[indexPath.row].nameOfTheLaboratory, image: laboratoriesClasses[indexPath.row].laboratoryCoverImage)
+        cell.setupCell(laboratoryName: Laboratories.shared.listOfLaboratories[indexPath.row].nameOfTheLaboratory
+            , image: Laboratories.shared.listOfLaboratories[indexPath.row].laboratoryCoverImage)
         return cell
     }
     
@@ -43,4 +45,8 @@ class LaboratoryChooseCollectionVC: UICollectionViewController {
     
 
 }
+
+
+
+
 
