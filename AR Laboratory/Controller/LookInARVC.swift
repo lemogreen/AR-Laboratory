@@ -13,6 +13,9 @@ import Charts
 
 class LookInARVC: UIViewController, ARSCNViewDelegate {
     
+    
+    @IBOutlet var statusLbl: UILabel!
+    
     @IBOutlet var configurationBtn: RoundedButtonView!
     @IBOutlet var graphicsBtn: RoundedButtonView!
     
@@ -58,9 +61,7 @@ class LookInARVC: UIViewController, ARSCNViewDelegate {
     let wilberForcePendulum = WilberforcePendulumBehavior()
     
     
-    //TODO: - Добавить условия блокировки слайдеров
     //TODO: - Добавить аннотации когда меняют конфигурацию системы
-    //TODO: - Сделать кнопки запуска и остановки эксперимента
     
     
     var isExperimentPlaing: Bool = false
@@ -80,6 +81,8 @@ class LookInARVC: UIViewController, ARSCNViewDelegate {
         super.viewDidLoad()
         self.laboratoryARView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         laboratoryARView.delegate = self
+        let rotateGesture = UIRotationGestureRecognizer(target: self, action: #selector(rotateNode(_:)))
+        self.view.addGestureRecognizer(rotateGesture)
     }
     
     
@@ -141,21 +144,25 @@ class LookInARVC: UIViewController, ARSCNViewDelegate {
     
     @IBAction func showGraphsWasPressed(_ sender: Any) {
         graphicsView.isHidden = false
+        isMovingAvaliable = false
     }
     
     
     @IBAction func hideBtnWasPressed(_ sender: Any) {
         graphicsView.isHidden = true
+        isMovingAvaliable = true
     }
     
     
     @IBAction func configurationBtnWasPressed(_ sender: Any) {
         configurationView.isHidden = false
+        isMovingAvaliable = false
     }
     
     
     @IBAction func hideConfigurationWasPressed(_ sender: Any) {
         configurationView.isHidden = true
+        isMovingAvaliable = true
     }
     
     
@@ -283,4 +290,87 @@ class LookInARVC: UIViewController, ARSCNViewDelegate {
         rigidityCofLabel.text = "\(wilberForcePendulum.rigidity_cof) кг/с"
     }
     
+    
+    func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
+        switch camera.trackingState {
+        // 1
+        case .notAvailable:
+            DispatchQueue.main.async {
+                self.statusLbl.text = "Недоступно"
+            }
+        // 2
+        case .normal:
+            self.statusLbl.text = "Поверхность обнаружена"
+        // 3
+        case .limited(let reason):
+            switch reason {
+            case .excessiveMotion:
+                DispatchQueue.main.async {
+                    self.statusLbl.text = "Сильное движение устройства"
+                }
+            // 3.1
+            case .insufficientFeatures:
+                DispatchQueue.main.async {
+                    self.statusLbl.text = "Недостаточно света"
+                }
+            // 3.2
+            case .initializing:
+                DispatchQueue.main.async {
+                    self.statusLbl.text = "Инициализация"
+                }
+            // 3.3
+            case .relocalizing:
+                DispatchQueue.main.async {
+                    self.statusLbl.text = "Восстановление после прерывания"
+                }
+            }
+        }
+        
+    }
+    
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if !isRotating{
+            //1. Get The Current Touch Point
+            guard let currentTouchPoint = touches.first?.location(in: self.laboratoryARView),
+                //2. Get The Next Feature Point Etc
+                let hitTest = laboratoryARView.hitTest(currentTouchPoint, types: .existingPlane).first else { return }
+            
+            //3. Convert To World Coordinates
+            let worldTransform = hitTest.worldTransform
+            
+            //4. Set The New Position
+            let newPosition = SCNVector3(worldTransform.columns.3.x, worldTransform.columns.3.y, worldTransform.columns.3.z)
+            
+            //5. Apply To The Node
+            wilberForcePendulum.currentPendulum.position = newPosition
+            
+        }
+    }
+    
+    var isMovingAvaliable = true
+    var isRotating = false
+    var currentAngleY: Float = 0.0
+    
+    @objc func rotateNode(_ gesture: UIRotationGestureRecognizer){
+        
+        //1. Get The Current Rotation From The Gesture
+        let rotation = Float(gesture.rotation)
+        
+        //2. If The Gesture State Has Changed Set The Nodes EulerAngles.y
+        if gesture.state == .changed{
+            isRotating = true
+            wilberForcePendulum.currentPendulum.eulerAngles.y = currentAngleY - rotation
+        }
+        
+        //3. If The Gesture Has Ended Store The Last Angle Of The Cube
+        if(gesture.state == .ended) {
+            currentAngleY = wilberForcePendulum.currentPendulum.eulerAngles.y
+            isRotating = false
+        }
+    }
+    
 }
+
+

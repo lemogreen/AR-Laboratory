@@ -44,7 +44,7 @@ class WilberforcePendulumBehavior {
     
     private(set) var wilberforceScene: SCNScene = SCNScene(named: "LaboratoriesModels.scnassets/WilberforcePendulum/Wilberforce.scn")!
     
-    
+    private(set) var currentPendulum: SCNNode = SCNNode()
     private(set) var springTopNode: SCNNode = SCNNode()
     private(set) var springNode: SCNNode = SCNNode()
     private(set) var loadNode: SCNNode = SCNNode()
@@ -117,7 +117,7 @@ class WilberforcePendulumBehavior {
     
     func setupSceneOnTouch(hitVector: SCNVector3) -> SCNScene {
         let newScene = SCNScene(named: Laboratories.shared.listOfLaboratories[selectedCell].laboratoryModel)!
-        let currentPendulum = newScene.rootNode.childNode(withName: "Wilberforce_Pendulum", recursively: false)!
+        currentPendulum = newScene.rootNode.childNode(withName: "Wilberforce_Pendulum", recursively: false)!
         springTopNode = newScene.rootNode.childNode(withName: "Spring_Node_Top", recursively: true)!
         springNode = newScene.rootNode.childNode(withName: "Spring_node", recursively: true)!
         loadNode = newScene.rootNode.childNode(withName: "Load_Node", recursively: true)!
